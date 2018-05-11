@@ -1,4 +1,7 @@
 import React, { Component } from 'react';
+import { Provider } from 'react-redux'
+import store from './src/store';
+
 import {
   createStackNavigator
 } from 'react-navigation';
@@ -31,7 +34,9 @@ const RootStack = createStackNavigator({
 export default class App extends React.Component {
   render() {
     return (
-      <RootStack/>
+      <Provider store={store}>
+        <RootStack/>
+      </Provider>
     );
   }
 }
