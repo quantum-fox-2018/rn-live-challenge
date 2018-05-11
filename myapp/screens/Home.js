@@ -6,6 +6,9 @@ import {
   Button,
   StyleSheet,
 } from 'react-native'
+import {connect} from 'react-redux'
+import {setPlayer} from '../store/game/game.action'
+import {bindActionCreators} from 'redux'
 
 class Home extends Component {
   static navigationOptions = {
@@ -26,7 +29,8 @@ class Home extends Component {
     }
   }
 
-  setPlayer =() => {
+  setPlayer= () =>{
+    this.props.setPlayer(this.state.username)
     this.props.navigation.navigate('Main', {
       username: this.state.username
     })
@@ -61,7 +65,7 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    marginTop: 30,
+    marginTop: 20,
   },
   title: {
     fontSize: 20
@@ -87,4 +91,8 @@ const styles = StyleSheet.create({
   }
 })
 
-export default Home;
+const mapDispatchToProps = (dispatch) => bindActionCreators({
+  setPlayer
+}, dispatch)
+
+export default connect(null, mapDispatchToProps) (Home);

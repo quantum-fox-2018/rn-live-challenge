@@ -56,14 +56,18 @@ class Main extends Component {
   }
 
   guess =(input)=>{
-    let usedWord = [...this.state.letterUsed]
-    usedWord.push(input)
-    let turn = this.state.turnLeft-1
-    this.setState({
-      ...this.state,
-      letterUsed: usedWord,
-      turnLeft: turn
-    })
+    if(this.state.turnLeft !== 0) {
+      let usedWord = [...this.state.letterUsed]
+      usedWord.push(input)
+      let turn = this.state.turnLeft-1
+      this.setState({
+        ...this.state,
+        letterUsed: usedWord,
+        turnLeft: turn
+      })
+    }else {
+      this.props.navigation.navigate('Finish')
+    }
   }
 
   componentDidUpdate () {
@@ -76,18 +80,30 @@ class Main extends Component {
     let indexWord = Math.floor(Math.random() * wordPicked.length)
     let blankWords = wordPicked[indexWord]
     let wordSplit = wordPicked.split('').map(value => {
+      let temp = ''
       if(blankWords === value) {
-        return '_'
+        temp += ' _ '
       }
+      console.log('temp==', temp)
+      return temp
+    })
+
+    this.setState({
+      ...this.state,
+      problem: wordSplit,
+      answer: wordPicked
     })
   }
 
   render() {
     return (
       <View style={styles.container}>
-        <Text style={styles.title}>{this.props.navigation.getParam('username', 'playerone')}</Text>
-        <Text style={styles.title}>{this.state.problem}</Text>
-        <Text style={styles.title}>Used Letters: {this.state.letterUsed}</Text>
+        <View style={styles.boxGuess}>
+        <Text style={styles.guessWord}>{this.state.problem}</Text>
+        </View>
+        <Text style={styles.title}> Player: {this.props.navigation.getParam('username', 'playerone')}</Text>
+        <Text style={styles.title}>Answer: {this.state.answer}</Text>
+        <Text style={styles.title}>Used Letters: {this.state.letterUsed.join(',')}</Text>
         <Text style={styles.title}>Turns Left: {this.state.turnLeft}</Text>
         <Text style={styles.title}>Game Status: {this.state.gameStatus}</Text>
         
@@ -131,10 +147,14 @@ const styles = StyleSheet.create({
     alignItems: 'center'
   },
   title: {
-    fontSize: 20
+    fontSize: 20,
+    marginTop: 2
+  },
+  guessWord: {
+    fontSize: 30
   },
   board: {
-    marginTop: 100,
+    marginTop: 50,
     justifyContent: 'center',
     flexDirection: 'row',
     flexWrap: 'wrap'
@@ -162,6 +182,10 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     fontSize: 25
   },
+  boxGuess: {
+    width: 200,
+    borderBottomWidth: 2 
+  }
 })
 
 export default Main;

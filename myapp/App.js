@@ -15,13 +15,15 @@ import {createStackNavigator} from 'react-navigation'
 import Homepage from './screens/Home'
 import Mainpage from './screens/Main'
 import Finishpage from './screens/Finish'
+import {Provider} from 'react-redux'
+import store from './store'
 
 const instructions = Platform.select({
   ios: 'Press Cmd+R to reload,\n' +
     'Cmd+D or shake for dev menu',
   android: 'Double tap R on your keyboard to reload,\n' +
     'Shake or press menu button for dev menu',
-});
+});store
 
 
 const RootStack = createStackNavigator({
@@ -50,7 +52,9 @@ export default class App extends Component {
       //     {instructions}
       //   </Text>
       // </View>
-      <RootStack/>
+      <Provider store={store}>
+        <RootStack/>
+      </Provider>
     );
   }
 }
