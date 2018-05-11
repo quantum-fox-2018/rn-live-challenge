@@ -7,16 +7,16 @@ import {
 } from 'react-native';
 import { ExpoLinksView } from '@expo/samples';
 
-export default class LinksScreen extends React.Component {
+export default class FinishScreen extends React.Component {
   static navigationOptions = {
-    title: 'Games',
+    title: 'Finish',
   };
 
   render() {
     return (
       <ScrollView style={styles.container}>
         <View>
-          <Text>On Dev</Text>
+          <Text>On Dev For Finish</Text>
         </View>
       </ScrollView>
     )

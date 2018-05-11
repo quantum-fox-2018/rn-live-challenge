@@ -85,10 +85,8 @@ const styles = StyleSheet.create({
     paddingVertical: 20,
   },
   tabNewGame: {
+    paddingTop: 200,
     color: 'green',
     alignItems: 'center',
-    paddingTop: 200,
-    textDecorationLine: 'underline',
-    textDecorationStyle: 'solid',
   }
 });

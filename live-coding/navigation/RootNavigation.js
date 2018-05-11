@@ -6,8 +6,6 @@ import MainTabNavigator from './MainTabNavigator';
 import registerForPushNotificationsAsync from '../api/registerForPushNotificationsAsync';
 
 const AppNavigator = createSwitchNavigator({
-  // You could add another route here for authentication.
-  // Read more at https://reactnavigation.org/docs/en/auth-flow.html
   Main: MainTabNavigator,
 });
 
@@ -25,13 +23,7 @@ export default class RootNavigation extends React.Component {
   }
 
   _registerForPushNotifications() {
-    // Send our push token over to our backend so we can receive notifications
-    // You can comment the following line out if you want to stop receiving
-    // a notification every time you open the app. Check out the source
-    // for this function in api/registerForPushNotificationsAsync.js
     registerForPushNotificationsAsync();
-
-    // Watch for incoming notifications
     this._notificationSubscription = Notifications.addListener(this._handleNotification);
   }
 

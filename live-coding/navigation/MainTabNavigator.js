@@ -5,8 +5,8 @@ import { createStackNavigator, createBottomTabNavigator } from 'react-navigation
 
 import TabBarIcon from '../components/TabBarIcon';
 import HomeScreen from '../screens/HomeScreen';
-import LinksScreen from '../screens/LinksScreen';
-import SettingsScreen from '../screens/SettingsScreen';
+import GamesScreen from '../screens/GamesScreen';
+import FinishScreen from '../screens/FinishScreen';
 
 const HomeStack = createStackNavigator({
   Home: HomeScreen,
@@ -26,36 +26,36 @@ HomeStack.navigationOptions = {
   ),
 };
 
-const LinksStack = createStackNavigator({
-  Games: LinksScreen,
+const GamesStack = createStackNavigator({
+  Games: GamesScreen,
 });
 
-LinksStack.navigationOptions = {
+GamesStack.navigationOptions = {
   tabBarLabel: 'Games',
   tabBarIcon: ({ focused }) => (
     <TabBarIcon
       focused={focused}
-      name={Platform.OS === 'ios' ? `ios-link${focused ? '' : '-outline'}` : 'md-link'}
+      name={Platform.OS === 'ios' ? `ios-game-controller-a${focused ? '' : '-outline'}` : 'md-game-controller-a'}
     />
   ),
 };
 
-const SettingsStack = createStackNavigator({
-  Settings: SettingsScreen,
+const FinishStack = createStackNavigator({
+  Finish: FinishScreen,
 });
 
-SettingsStack.navigationOptions = {
-  tabBarLabel: 'Settings',
+FinishStack.navigationOptions = {
+  tabBarLabel: 'Finish',
   tabBarIcon: ({ focused }) => (
     <TabBarIcon
       focused={focused}
-      name={Platform.OS === 'ios' ? `ios-options${focused ? '' : '-outline'}` : 'md-options'}
+      name={Platform.OS === 'ios' ? `ios-done-all${focused ? '' : '-outline'}` : 'ios-done-all'}
     />
   ),
 };
 
 export default createBottomTabNavigator({
   HomeStack,
-  LinksStack,
-  SettingsStack,
+  GamesStack,
+  FinishStack,
 });
