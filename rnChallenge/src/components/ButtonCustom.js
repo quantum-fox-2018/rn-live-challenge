@@ -3,15 +3,14 @@ import { Button, StyleSheet } from 'react-native'
 class ButtonCustom extends Component {
   
   nextPage = () => {
-    console.log(this.props)
     this.props.navigation.navigate(`${this.props.next}`)
   }
   render() {
     return (
         <Button
-          title="Learn More"
+          title={this.props.status}
           color="green"
-          width= "80%"
+          width= "100"
           onPress={ this.nextPage }
           accessibilityLabel="Learn more about this purple button"
         />

@@ -9,7 +9,7 @@ class WelcomeScreen extends Component {
   render() {
     return (
       <View style={ styles.containerButton}>
-        <ButtonCustom next="Main" {...this.props}/>
+        <ButtonCustom next="Main" {...this.props} status="Mulai"/>
       </View>
     );
   }
