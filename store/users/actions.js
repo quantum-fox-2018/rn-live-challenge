@@ -7,7 +7,11 @@ export const getUsers = () => {
     db.ref('cssgame/users').on('value', (snapshot) => {
       let usersArray = []
       snapshot.forEach(data => {
-        usersArray.push(data.val())
+        let obj = {
+          ...data.val(),
+          key: data.key
+        }
+        usersArray.push(obj)
       })
       dispatch(getUsersSuccess(usersArray))
     })

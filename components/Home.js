@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import { View, Button, StyleSheet, TextInput } from 'react-native';
-import {  } from 'react-navigation';
-import { db } from '../firebase'
+import { navigate } from 'react-navigation';
+import { db } from '../firebase';
+import Game from './Game';
 
 class Home extends Component {
   constructor() {
@@ -11,9 +12,10 @@ class Home extends Component {
     }
   }
   newGame = () => {
-    db.ref('cssgame/words/').push({
+    db.ref('cssgame/users/').push({
       username: this.state.username
     })
+    // this.props.navigation.push('Game')
   }
   render() {
     return (
@@ -27,7 +29,7 @@ class Home extends Component {
           style={{
             
           }}
-          onPress={this.newGame}
+          onPress={() => this.props.navigation.navigate('Game')}
           title="New Game"
         />
       </View>

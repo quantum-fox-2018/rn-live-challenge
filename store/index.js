@@ -1,14 +1,11 @@
 import { createStore, applyMiddleware, combineReducers } from "redux"
-import logger from 'redux-logger'
 import usersReducers from './users/reducers'
 import thunk from 'redux-thunk'
-import passmanagerReducer from "./passmanager/reducers";
 
 const reducers = combineReducers({
-  users: usersReducers,
-  passmanager: passmanagerReducer
+  users: usersReducers
 })
 
-let store = createStore(reducers, window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__(), applyMiddleware(thunk, logger))
+let store = createStore(reducers, applyMiddleware(thunk))
 
 export default store
