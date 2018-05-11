@@ -1,16 +1,17 @@
 import React, { Component } from 'react';
 import { View, ScrollView, Text, Button, StyleSheet, TouchableHighlight } from 'react-native'
 import { connect } from 'react-redux'
+import { setWord } from '../store/play/action'
 import {bindActionCreators} from 'redux'
 
 class Main extends Component {
     constructor() {
         super()
         this.state={
-            kata:[],
+            touchpad:[],
             targetWord:null,
             turnleft:5,
-            wordUsed:[],
+            letterUsed:[],
             targetLetter:''
         }
     }
@@ -31,7 +32,7 @@ class Main extends Component {
             ...this.state,
             targetWord:target.join(''),
             targetLetter:targetLetter,
-            kata:this.props.board.kata,
+            touchpad:this.props.board.touchpad,
         })
     }
     gamePlay(i){
@@ -47,11 +48,11 @@ class Main extends Component {
                 status: 'ANDA KALAH'
             })
         }else{
-            let wordUsedMove = this.state.wordUsed
-            wordUsedMove.push(i)
+            let letterUsedMove = this.state.letterUsed
+            letterUsedMove.push(i)
             this.setState({
                 ...this.state,
-                wordUsed:wordUsedMove,
+                letterUsed:letterUsedMove,
                 turnleft:turn
             })
         }
@@ -61,10 +62,10 @@ class Main extends Component {
       <View style={styles.container}>
         <View >
             <Text style={{fontSize:30}}>
-            {this.state.letterUsed}
+            {this.state.targetWord}
             </Text>
             <Text>
-            Used: {this.state.wordUsed.join(',')}
+            Used: {this.state.letterUsed.join(',')}
             </Text>
             <Text>
             Turn Left: {this.state.turnleft}
@@ -72,8 +73,8 @@ class Main extends Component {
         </View>
         <View style={styles.board}>
           {
-            this.state.kata.map((e,i)=>{
-              if(this.state.wordUsed.indexOf(e)!==-1){
+            this.state.touchpad.map((e,i)=>{
+              if(this.state.letterUsed.indexOf(e)!==-1){
                   return (
                       <TouchableHighlight
                       key={i}

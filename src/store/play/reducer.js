@@ -2,10 +2,10 @@ const Abjad = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'
 const initialState = {
   touchpad:Abjad.split(''),
   randomWord:[
-      'agrhaganteng',
-      'agrhacakep',
-      'agrhatampan',
-      'agrhaganteng'
+      'ganteng',
+      'cakep',
+      'tampan',
+      'agrha'
   ],
   word:''
 }
