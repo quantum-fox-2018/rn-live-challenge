@@ -17,7 +17,8 @@ const initialState = {
     'width'
   ],
   winStatus: false,
-  guessWords: ''
+  guessWords: '',
+  turns: 15,
 }
 
 const reducers = ((state= {...initialState}, action) => {
@@ -25,10 +26,12 @@ const reducers = ((state= {...initialState}, action) => {
     case FETCH_RANDOM_WORD:
       return state
     case MATCH_RANDOM_WORD:
+      let turnLeft = state.turns-1
       return ({
         ...state,
         winStatus: action.payload.winStatus,
-        guessWords: action.payload.guessWords
+        guessWords: action.payload.guessWords,
+        turns: turnLeft
       })
     default:
       return state

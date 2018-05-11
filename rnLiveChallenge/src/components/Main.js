@@ -1,28 +1,38 @@
 import React, { Component } from 'react';
 import {
-  View, Text, TouchableHighlight, StyleSheet
+  View, Text, TouchableHighlight, StyleSheet, ScrollView
 } from 'react-native';
-import Keyboard from './Main/Keyboard'
+import GuessWord from './Main/GuessWord';
+import GameState from './Main/GameState';
+import Keyboard from './Main/Keyboard';
 
 class Main extends React.Component {
+  constructor() {
+    super()
+    this.state = {
+      alphabet: ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z']
+    }
+  }
+
   render() {
+    let keyboards = this.state.alphabet.map((alpha, index) => {
+      return (<Keyboard alphabet={alpha} key={index}/>)
+    })
+
     return (
-      <View style={styles.container}>
-        <Text>Guess Your Words</Text>
-        <View>
-          <Text>
-            Guess Words
-          </Text>
+      <ScrollView>
+        <View style={styles.container}>
+          <View style={styles.gueses}>
+            <GuessWord />
+          </View>
+          <View>
+            <GameState />
+          </View>
+          <View style={styles.keyboardStyle}>
+            {keyboards}
+          </View>
         </View>
-        <View>
-          <Text>
-            Game State
-          </Text>
-        </View>
-        <View style={{flex: 1, flexDirection: 'row'}}>
-          <Keyboard />
-        </View>
-      </View>
+      </ ScrollView>
     );
   }
 }
@@ -37,6 +47,14 @@ const styles = StyleSheet.create({
   buttons: {
     width: 200,
     color: '#841584'
+  },
+  keyboardStyle: {
+    flex: 1, 
+    flexDirection: 'row', 
+    flexWrap: 'wrap'
+  },
+  gueses: {
+    flexWrap: 'nowrap'
   }
 });
 
