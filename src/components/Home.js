@@ -29,4 +29,5 @@ const styles = StyleSheet.create({
       alignItems: 'center',
   },
 })
+
 AppRegistry.registerComponent('AwesomeProject', () => Welcome)

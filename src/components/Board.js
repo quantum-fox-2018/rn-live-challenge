@@ -8,21 +8,20 @@ class Main extends Component {
         super()
         this.state={
             kata:[],
-            letterUsed:null,
+            targetWord:null,
             turnleft:5,
-            gamestatus:true,
             wordUsed:[],
-            cobaWord:''
+            targetLetter:''
         }
     }
     componentDidMount(){
         let target = this.props.board.randomWord[Math.floor(Math.random()*(this.props.board.randomWord.length-1))].toUpperCase()
         console.log(target)
-        let coba = ''
+        let targetLetter = ''
         let random = Math.floor(Math.random()*(target.length-1))
         target = target.split('').map((e,i)=>{
             if(i==random){
-                coba=e
+                targetLetter = e
                 return '_'
             }else{
                 return e
@@ -30,8 +29,8 @@ class Main extends Component {
         })
         this.setState({
             ...this.state,
-            letterUsed:target.join(''),
-            cobaWord:coba,
+            targetWord:target.join(''),
+            targetLetter:targetLetter,
             kata:this.props.board.kata,
         })
     }
@@ -39,7 +38,7 @@ class Main extends Component {
         let turn = this.state.turnleft
         console.log(i)
         turn--
-        if(i==this.state.cobaWord){
+        if(i==this.state.targetLetter){
             this.props.navigation.navigate('Win',{
                 status: 'ANDA MENANG'
             }) 
