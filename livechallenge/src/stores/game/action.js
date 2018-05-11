@@ -1,6 +1,7 @@
 import {
   ADD_WORD,
-  RANDOM_WORD
+  RANDOM_WORD,
+  RESET
 } from './action.types'
 
 export const addNewWord = (word) => {
@@ -12,6 +13,16 @@ export const addNewWord = (word) => {
 const addWord = (payload) => ({
   type: ADD_WORD,
   payload: payload
+})
+
+export const resetGame = () => {
+  return dispatch => {
+    dispatch(reset())
+  }
+}
+
+const reset = () => ({
+  type: RESET
 })
 
 export const getRandomWord = (word) => {

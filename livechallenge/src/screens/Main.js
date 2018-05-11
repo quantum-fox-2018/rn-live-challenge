@@ -4,21 +4,73 @@ import {
   Text,
   StyleSheet,
   Button,
-  TouchableOpacity
+  TouchableOpacity,
+  ScrollView
 } from 'react-native'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
-import { addNewWord, getRandomWord} from '../stores/game/action'
+import { addNewWord, getRandomWord, resetGame} from '../stores/game/action'
 
 class Main extends Component {
+
+  constructor(props) {
+    super(props)
+    this.state = {
+      wordNow: [],
+      correctCount: 0,
+      winStatus: false
+    }
+  } 
 
   randomIt = () => {
     const selectedWord = this.props.randomWords[0]
     this.props.getRandomWord(selectedWord)
+
+    let hiddenWord = []
+    for (let i = 0; i < selectedWord.length; i++) {
+      hiddenWord.push("_ ") 
+    }
+    this.setState({
+      wordNow: hiddenWord
+    })
   }
 
   componentDidMount () {
+    this.props.resetGame()
     this.randomIt()
+  }
+
+  componentDidUpdate () {
+    if (this.state.correctCount === this.props.selectedWord.length) {
+      alert('you win')
+      this.setState({
+        winStatus: true,
+        correctCount: 0
+      })
+    }
+  }
+  
+  wordPressed = (huruf) => {
+    for (let i = 0; i < this.props.selectedWord.length; i++) {
+      if (this.props.selectedWord[i] === huruf) {
+        let wordNow = this.state.wordNow
+        wordNow[i] = this.props.selectedWord[i]
+        let correctCount = this.state.correctCount
+        correctCount += 1
+        this.setState({
+          wordNow: wordNow,
+          correctCount: correctCount
+        })
+      }
+    }
+    
+    if (this.state.correctCount === this.props.selectedWord.length) {
+      alert('you win')
+      this.setState({
+        winStatus: true
+      })
+    }
+    this.props.addNewWord(huruf)
   }
 
   render () {
@@ -30,24 +82,40 @@ class Main extends Component {
         key={index}
         onPress={
           () => {
-            this.props.addNewWord(huruf)
+            this.wordPressed(huruf)
           }
         }
       />
-      
-      const hiddenWord = this.props.selectedWord.map(
-        value => <Text>* </Text>
-      )
     )
+
     return (
       <View>
-        <Text>Guess This : </Text>
-        <Text> {this.props.selectedWord} </Text>
-        <Text>Word Used: {this.props.wordUsed} </Text>
-        <Text>Turn left: </Text>
-        <Text>Game Status: </Text>
         
-        {buttonList}
+        {
+            this.state.winStatus ? <Button
+            title="you win"
+            onPress={
+              () => {
+                this.props.navigation.navigate('Finish')
+              }
+            }/>
+            : 
+            <ScrollView>
+              <Text>{this.props.selectedWord}</Text>
+          <Text> selected word: {this.props.selectedWord}</Text>
+          <Text>Guess This : </Text>
+          <Text>{this.state.wordNow}</Text>
+          <Text>Word Used: {this.props.wordUsed} </Text>
+          <Text>Correct Count: {this.state.correctCount}</Text>
+          <Text>Turn left: </Text>
+          <Text>Game Status: </Text>
+          
+          {buttonList}
+        </ScrollView>
+          }
+          
+          
+        
       </View>
       
     )
@@ -79,7 +147,8 @@ const mapStateToProps = (state) => ({
 
 const mapDispatchToProps = (dispatch) => bindActionCreators({
   addNewWord,
-  getRandomWord
+  getRandomWord,
+  resetGame
 }, dispatch)
 
 export default connect(mapStateToProps, mapDispatchToProps) (Main)

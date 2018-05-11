@@ -1,10 +1,10 @@
-import { ADD_WORD, RANDOM_WORD } from './action.types'
+import { ADD_WORD, RANDOM_WORD, RESET } from './action.types'
 
 const initialState = {
   wordUse: [],
   turnLeft: [],
-  randomWords: ['height', 'width', 'flex'],
-  selectedWord: 'random'
+  randomWords: ['FLEX', 'WIDTH', 'STYLE'],
+  selectedWord: ''
 }
 
 const reducers = (state = {...initialState}, action) => {
@@ -18,6 +18,10 @@ const reducers = (state = {...initialState}, action) => {
       return {
         ...state,
         selectedWord: action.payload
+      }
+    case RESET:
+      return {
+        ...initialState
       }
     default: 
     return state
