@@ -3,7 +3,9 @@ import {
   View,
   Text,
   TextInput,
-  StyleSheet
+  StyleSheet,
+  TouchableOpacity,
+  Button
 } from 'react-native'
 
 class Finish extends Component {
@@ -23,6 +25,13 @@ class Finish extends Component {
         <View style={styles.textContainer}>
           <Text style={styles.title}>Yay! You Win!!</Text>
         </View>
+        <View>
+          <Button
+          style={styles.btn}
+            onPress={()=> this.props.navigation.navigate('Home')}
+            title="Play Again"
+          />
+        </View>
       </View>
     );
   }
@@ -32,7 +41,7 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    marginTop: 30,
+    marginTop: 20,
   },
   title: {
     fontSize: 30,
@@ -43,12 +52,13 @@ const styles = StyleSheet.create({
     margin: 20
   },
   btn: {
-    paddingLeft: 100,
-    paddingRight: 100,
-    paddingTop: 20,
-    paddingBottom: 20,
-    borderRadius: 20
-  }
+    padding: 20,
+    borderWidth: 2,
+    borderColor: 'white',
+    width: 100,
+    height: 100,
+    backgroundColor: '#009432'
+  },
 })
 
 
