@@ -41,7 +41,9 @@ const RootStack = createStackNavigator({
 export default class App extends React.Component{
   render() {
     return (
-      <RootStack />
+      <Provider store={store}>
+        <RootStack />
+      </Provider>
       // <View style={styles.container}>
       //   <Text style={styles.welcome}>
       //     Sudah masuk testing
