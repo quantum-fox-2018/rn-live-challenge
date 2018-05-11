@@ -20,19 +20,19 @@ const initialState = {
   guessWords: ''
 }
 
-const reducer = (state= {...initialState}, action) => {
+const reducers = ((state= {...initialState}, action) => {
   switch (action.type) {
     case FETCH_RANDOM_WORD:
       return state
     case MATCH_RANDOM_WORD:
       return ({
-        ...initialState,
+        ...state,
         winStatus: action.payload.winStatus,
         guessWords: action.payload.guessWords
       })
     default:
       return state
   }
-}
+})
 
-export default reducer
+export default reducers
