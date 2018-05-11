@@ -70,6 +70,7 @@ class Main extends Component {
       this.setState({
         winStatus: true
       })
+      this.props.navigation.navigate('Finish')
     }
     this.props.addNewWord(huruf)
   }
@@ -90,7 +91,7 @@ class Main extends Component {
     )
 
     return (
-      <View>
+      <View style={styles.container}>
         
         {
             this.state.winStatus ? <Button
