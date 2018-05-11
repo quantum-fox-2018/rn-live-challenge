@@ -23,7 +23,8 @@ class Main extends Component {
   } 
 
   randomIt = () => {
-    const selectedWord = this.props.randomWords[0]
+    let randomNumber = Math.floor((Math.random() * 2) + 0);
+    const selectedWord = this.props.randomWords[randomNumber]
     this.props.getRandomWord(selectedWord)
 
     let hiddenWord = []
@@ -101,8 +102,6 @@ class Main extends Component {
             }/>
             : 
             <ScrollView>
-              <Text>{this.props.selectedWord}</Text>
-          <Text> selected word: {this.props.selectedWord}</Text>
           <Text>Guess This : </Text>
           <Text>{this.state.wordNow}</Text>
           <Text>Word Used: {this.props.wordUsed} </Text>
