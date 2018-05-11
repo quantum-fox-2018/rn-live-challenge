@@ -3,7 +3,8 @@ import {
   ScrollView,
   StyleSheet,
   View,
-  Text
+  Text,
+  TouchableOpacity
 } from 'react-native';
 import { ExpoLinksView } from '@expo/samples';
 
@@ -15,9 +16,9 @@ export default class FinishScreen extends React.Component {
   render() {
     return (
       <ScrollView style={styles.container}>
-        <View>
-          <Text>On Dev For Finish</Text>
-        </View>
+        <TouchableOpacity>
+          <Text onPress={ () => this.props.navigation.navigate('Games')}>Play Again</Text>
+        </TouchableOpacity>
       </ScrollView>
     )
   }
