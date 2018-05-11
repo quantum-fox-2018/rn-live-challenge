@@ -4,13 +4,15 @@ import { db }from '../../firebase'
 export const getWords = () => {
   return dispatch => {
     dispatch(getWordsPending())
-    db.ref('cssgame/words').on('value', (snapshot) => {
-      let wordsArray = []
-      snapshot.forEach(data => {
-        wordsArray.push(data.val())
-      })
-      dispatch(getWordsSuccess(wordsArray))
-    })
+    // db.ref('cssgame/words').on('value', (snapshot) => {
+    //   let wordsArray = []
+    //   snapshot.forEach(data => {
+    //     wordsArray.push(data.val())
+    //   })
+    //   dispatch(getWordsSuccess(wordsArray))
+    // })
+    const words = ['background', 'border', 'clear', 'cursor', 'display', 'flex', 'font', 'grid', 'height', 'width']
+    dispatch(getWordsSuccess(words))
   }
 }
 

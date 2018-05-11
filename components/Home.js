@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { View, Button, StyleSheet, TextInput } from 'react-native';
-import { navigate } from 'react-navigation';
 import { db } from '../firebase';
 import Game from './Game';
 
@@ -29,7 +28,7 @@ class Home extends Component {
           style={{
             
           }}
-          onPress={() => this.props.navigation.navigate('Game')}
+          onPress={() => this.props.navigation.push('Game')}
           title="New Game"
         />
       </View>

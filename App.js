@@ -18,7 +18,7 @@ class App extends React.Component {
           justifyContent: 'flex-start',
           marginTop: 30
         }}>Guess CSS Props</Text>
-        <Home/>
+        <Game/>
       </View>
       </Provider>
     );
