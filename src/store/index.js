@@ -1,5 +1,5 @@
 import { createStore, combineReducers, applyMiddleware } from 'redux';
-import reducers from './character/reducers';
+import reducers from './game/reducers';
 import thunk from 'redux-thunk'
 
 const combReducers = combineReducers({data: reducers})

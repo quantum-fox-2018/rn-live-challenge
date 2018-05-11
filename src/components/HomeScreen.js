@@ -4,6 +4,7 @@ import { createStackNavigator } from 'react-navigation'
 import { getData } from '../store/game/actions'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
+import MainScreen from './MainScreen'
 
 
 class HomeScreen extends Component {
@@ -14,13 +15,6 @@ class HomeScreen extends Component {
     }
   }
 
-  fetchData() {
-    this.props.getData()
-  }
-
-  componentDidMount() {
-    this.fetchData()
-  }
 
   newGame() {
     this.setState({ game_status: true })
@@ -51,14 +45,15 @@ class HomeScreen extends Component {
 
 
 
-const mapStateToProps = state => ({
-  games: state.data
-})
+// const mapStateToProps = state => ({
+//   games: state.data
+// })
 
-const mapDispatchToProps = (dispatch) => bindActionCreators({
-  getData
-}, dispatch)
+// const mapDispatchToProps = (dispatch) => bindActionCreators({
+//   getData
+// }, dispatch)
 
 
 
-export default connect(mapStateToProps, mapDispatchToProps)(HomeScreen);
+// export default connect(mapStateToProps, mapDispatchToProps)(HomeScreen);
+export default HomeScreen;

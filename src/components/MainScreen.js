@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Text, View, getParam, TouchableOpacity, Image, Button } from 'react-native'
+import { Text, View, getParam, Keyboard, TextInput, Button } from 'react-native'
 
 class MainScreen extends Component {
   constructor() {
@@ -20,12 +20,9 @@ class MainScreen extends Component {
     this.keyboardDidHideListener.remove();
   }
 
-  _keyboardDidShow() {
-    alert('Keyboard Shown');
-  }
 
-  _keyboardDidHide() {
-    alert('Keyboard Hidden');
+  handleChange(){
+
   }
 
   render() {
@@ -33,7 +30,7 @@ class MainScreen extends Component {
       <View>
         <Text>Guess</Text>
       <TextInput
-        onSubmitEditing={Keyboard.dismiss}
+        onChange={this.handleChange}
       />
       </View>
     );

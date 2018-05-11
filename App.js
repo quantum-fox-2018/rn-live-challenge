@@ -7,7 +7,7 @@ import { createStackNavigator } from 'react-navigation';
 import { Provider } from 'react-redux';
 import store from './src/store';
 
-const HomeStack = createStackNavigator({
+const RootStack = createStackNavigator({
   Home: HomeScreen,
   Main: MainScreen,
   End: EndScreen
