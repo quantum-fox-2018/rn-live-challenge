@@ -1,0 +1,3 @@
+rootProject.name = 'rnLiveChallenge'
+
+include ':app'
