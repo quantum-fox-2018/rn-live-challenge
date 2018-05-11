@@ -16,28 +16,20 @@ class EndScreen extends Component {
 
 
 
-  newGame() {
-    this.setState({ game_status: true })
-  }
-
 
   render() {
-    const { game_status } = this.state
+   const status_winner = this.props.status_winner
     return (
       <View>
         {
-          game_status ? (
-            <MainScreen game_status={game_status}/>
-          ) : (
-              <Button
-                onPress={() => this.newGame()}
-                title="New Game"
-                color="green"
-                accessibilityLabel="New Game For Good Lyfe"
-              />
-            )
-
+          status_winner ? (
+            <Text>YAY wou win</Text>
+          )
+          : (
+            <Text>Oh no, You Lost</Text>
+          )
         }
+       
       </View>
     )
   }
