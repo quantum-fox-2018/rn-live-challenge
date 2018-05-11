@@ -9,7 +9,8 @@ const initialState = {
     'grid'
   ],
   gameWord: [],
-  gameStatus: false,
+  answerWord: '',
+  gameStatus: 'Solve this',
   letterUsed: [],
   turnsLeft: 3
 }
@@ -19,7 +20,8 @@ const gameReducers = (state = {...initialState}, action) => {
     case GENERATE_BOARD:
       return {
         ...state,
-        gameWord: action.payload
+        gameWord: action.payload.puzzle,
+        answerWord: action.payload.word
       }
     default:
       return state

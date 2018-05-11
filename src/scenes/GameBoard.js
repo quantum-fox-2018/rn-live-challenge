@@ -9,6 +9,7 @@ import {
   Button,
   StyleSheet
 } from 'react-native';
+import Keyboard from '../components/Keyboard';
 
 class GameBoard extends Component {
   componentDidMount() {
@@ -17,17 +18,20 @@ class GameBoard extends Component {
   }
 
   render() {
+    let { gameWord, turnsLeft, gameStatus } = this.props.game
+
     return (
       <View style={styles.container}>
-        <Text>Guess CSS Props</Text>
-        <View>
-
+        <View style={{alignItems: 'center'}}>
+          <Text style={{fontSize: 24, fontWeight: 'bold'}}>
+            {gameWord.join('  ')}
+          </Text>
+          <Text>Used: </Text>
+          <Text>Turns Left: {turnsLeft}</Text>
+          <Text>Game Status {gameStatus}</Text>
         </View>
 
-        <Button
-          title="Game End"
-          onPress={() => this.props.navigation.navigate('GameEnd')}
-        />
+        <Keyboard/>
       </View>
     );
   }
@@ -37,6 +41,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     alignItems: 'center',
+    justifyContent: 'center',
     backgroundColor: '#F5FCFF',
   },
   title: {
